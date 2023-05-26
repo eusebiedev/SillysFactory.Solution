@@ -2,7 +2,7 @@
 
 #### By _**Eusebie Siebenberg**_
 
-#### Indpendent Code Review project: 
+#### Indpendent Code Review project: Build an MVC web application to manage a factories engineers, and the machines they are licensed to fix.
 
 ## Technologies Used
 
@@ -17,7 +17,8 @@
 
 ## Description 
 
-description
+Dr. Silly's Factory
+You've been contracted by the factory of the famous Dr. Silly's to build an application to keep track of their machine repairs. Y The factory manager should be able to add a list of engineers, a list of machines, and specify which engineers are licensed to repair which machines. There should be a many-to-many relationship between Engineers and Machines. An engineer can be licensed to repair (belong to) many machines (such as the Dreamweaver, the Bubblewrappinator, and the Laughbox) and a machine can have many engineers licensed to repair it.
 
 ## Setup/Installation Requirements
 
