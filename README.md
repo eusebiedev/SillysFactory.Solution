@@ -23,7 +23,7 @@ description
 
 1. Open your shell of choice (e.g., Terminal or GitBash) and run these commands in order:
 2. Clone this repository by running $ `git clone https://github.com/user/examplerepo.git` (replace url with link copied from github)
-3. Navigate to the root directory call `EauClairesSalon.Solution`, Create a `.gitignore` file with $ `touch .gitignore`, copy/paste this into the .gitignore file:
+3. Navigate to the root directory call `SillysFactory.Solution`, Create a `.gitignore` file with $ `touch .gitignore`, copy/paste this into the .gitignore file:
 ```
 obj
 bin
@@ -32,15 +32,15 @@ appsettings.json
 #### Importing the MySQL Database: 
 * Open MySQL Workbench, in the Navigator > Administration window, select Data Import/Restore.
 * In Import Options select Import from Self-Contained File.
-* Navigate to the sql file located in the root directory of this project called `eusebie_siebenberg.sql`
+* Navigate to the sql file located in the root directory of this project called `sillys_factory.sql`
 * Under Default Schema to be Imported To, select the New button.
-* Choose a name for your database, or simply use `eusebie_siebenberg.sql` and Click OK
+* Choose a name for your database, or simply use `sillys_factory.sql`, and Click OK
 * Navigate to the tab called Import Progress and click Start Import at the bottom right corner of the window.
 * After you are finished with the above steps, reopen the Navigator > Schemas tab. Right click and select Refresh All. 
 * Your new database will appear!
 
-4. Navigate to this project's production directory called "HairSalon" with $ `cd `.
-5. Within the production directory create a new file called `appsettings.json`.
+4. Navigate to this project's production directory called "Factory" with $ `cd Factory`.
+5. Within the production directory create a new file called `appsettings.json`  with $ `touch appsettings.json`.
 6. Within `appsettings.json`, paste in the following code, replacing `your_database`, `user-id`, and `password` values with your newly created database name, own username and password for MySQL 
 (remove square brackets when inputting your details):
 
@@ -51,15 +51,16 @@ appsettings.json
   }
 }
 ```
-7. Within the production directory "", run `dotnet watch run` in the command line to start the application in development mode with a watcher.
+7. Withing the production directory `Factory`, run `dotnet ef database update`.
+8. Within the production directory, run `dotnet watch run` in the command line to start the application in development mode with a watcher an interact with the database.
 
 ## Known Bugs 
 
-* _No known bugs as of 05/25/2023_
+* _No known bugs as of 05/26/2023_
 
 ## [MIT](https://opensource.org/license/mit/) License
 
-Copyright (c) 5/25/2023, Eusebie Siebenberg
+Copyright (c) 5/26/2023, Eusebie Siebenberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
