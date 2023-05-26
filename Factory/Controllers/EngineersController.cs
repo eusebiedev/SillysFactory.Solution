@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
@@ -17,7 +18,7 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineers> model = _db.Engineers.ToList();
+      List<Engineer> model = _db.Engineers.ToList();
       return View(model);
     }
 
@@ -37,7 +38,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
-                                .Include(engineer => engineer.Machines)
+                                .Include(engineer => engineer.Machine)
                                 .ThenInclude(machine => machine.JoinEntities)
                                 .ThenInclude(join => join.Machine)
                                 .FirstOrDefault(engineer => engineer.EngineerId == id);
@@ -60,23 +61,23 @@ namespace Factory.Controllers
 
     public ActionResult AddMachine(int id)
     {
-      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineers.EngineerId == id);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachinesId", "Name");
       return View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult AddTag(Item item, int tagId)
+    public ActionResult AddMachine(Engineer engineer, int MachineId)
     {
       #nullable enable
-      ItemTag? joinEntity = _db.ItemTags.FirstOrDefault(join => (join.TagId == tagId && join.ItemId == item.ItemId));
+      EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.MachineId == MachineId && join.EngineerId == engineer.EngineerId));
       #nullable disable
-      if (joinEntity == null && tagId != 0)
+      if (joinEntity == null && MachineId != 0)
       {
-        _db.ItemTags.Add(new ItemTag() { TagId = tagId, ItemId = item.ItemId });
+        _db.EngineerMachines.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId });
         _db.SaveChanges();
       }
-      return RedirectToAction("Details", new { id = item.ItemId });
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
 
     public ActionResult Delete(int id)
@@ -89,7 +90,7 @@ namespace Factory.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-      _db.Categories.Remove(thisEngineer);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
