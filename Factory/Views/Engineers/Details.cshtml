@@ -2,8 +2,8 @@
   Layout = "_Layout";
 }
 
-@model Factory.Models.Engineer;
 @using Factory.Models;
+@model Factory.Models.Engineer;
 
 <h2>Engineer Details</h2>
 <hr />
@@ -15,7 +15,7 @@
 }
 else
 {
-  <h4>This enginner has the following machines assigned:</h4>
+  <h4>This engineer has the following machines assigned:</h4>
   <ul>
     @foreach(EngineerMachine join in Model.JoinEntities)
     {
@@ -29,8 +29,8 @@ else
   </ul>
 }
 
+<p>@Html.ActionLink("Add a machine for this Engineer", "AddMachine", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Back to engineers", "Index")</p>
 <p>@Html.ActionLink("Edit engineer", "Edit", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add a machine for this Engineer", "AddMachine", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

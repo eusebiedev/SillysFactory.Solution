@@ -10,8 +10,10 @@
       crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
-  <body>
+  <body class="p-3 m-0">
+    <div class="container mt-4">
     @RenderBody()
     @await Html.PartialAsync("Footer")
+    </div>
   </body>
 </html>

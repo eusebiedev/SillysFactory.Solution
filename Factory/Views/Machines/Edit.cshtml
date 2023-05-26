@@ -5,18 +5,19 @@
 @model Factory.Models.Machine
 
 <h4>Edit this machine: @Html.DisplayFor(model => model.Name)</h4>
+<div class="col">
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.MachineId)
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.MachineId)
+    @Html.LabelFor(model => model.Name, new { htmlAttributes = new { @class = "form-label"}})
+    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control"}})
+    <br>
+    @Html.LabelFor(model => model.Engineer)<br>
+    @Html.DropDownList("EngineerId")
+    <br><br>
+    <input type="submit" value="Save" class="btn btn-primary btn-sm" />
+  }
 
-  @Html.LabelFor(model => model.Name)
-  @Html.EditorFor(model => model.Name)
-
-  @* @Html.LabelFor(model => model.Engineer)
-  @Html.DropDownList("EngineerId") *@
-
-  <input type="submit" value="Save" />
-}
-
-<p>@Html.ActionLink("Back to list", "Index")</p>
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>
