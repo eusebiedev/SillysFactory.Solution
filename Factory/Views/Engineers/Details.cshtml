@@ -2,8 +2,8 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models;
-@model Factory.Models.Engineer;
+@using Factory.Models
+@model Factory.Models.Engineer
 
 <h2>Engineer Details</h2>
 <hr />
@@ -11,7 +11,7 @@
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <p>This enginner does not have any machines to repair yet!</p>
+  <p>This engineer does not have any machines to repair yet!</p>
 }
 else
 {
