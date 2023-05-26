@@ -4,7 +4,6 @@
 
 @model Factory.Models.Engineer;
 @using Factory.Models;
-@using System.Collections.Generic;
 
 <h2>Engineer Details</h2>
 <hr />
@@ -32,6 +31,6 @@ else
 
 <p>@Html.ActionLink("Back to engineers", "Index")</p>
 <p>@Html.ActionLink("Edit engineer", "Edit", new { id = Model.EngineerId })</p>
+<p>@Html.ActionLink("Add a machine for this Engineer", "AddMachine", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
-<p>@Html.ActionLink("Add new machine", "Create", "Machines")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
