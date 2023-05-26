@@ -2,20 +2,19 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Item
+@model Factory.Models.Machine
 
-<h4>Add a new item</h4>
+<h4>Add a new MACHINE</h4>
 
 <p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 
-
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Description)
-  @Html.TextBoxFor(model => model.Description)
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
 
-  @Html.LabelFor(model => model.Category)
-  @Html.DropDownList("CategoryId")
+  @* @Html.LabelFor(model => model.Engineer)
+  @Html.DropDownList("EngineerId") *@
 
   <input type="submit" value="Add new item" class="btn btn-default" />
 }

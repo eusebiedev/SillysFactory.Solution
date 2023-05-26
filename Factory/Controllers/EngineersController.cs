@@ -18,7 +18,8 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineer> model = _db.Engineers.ToList();
+      List<Engineer> model = _db.Engineers
+                                .ToList();
       return View(model);
     }
 
@@ -38,8 +39,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
-                                .Include(engineer => engineer.Machine)
-                                .ThenInclude(machine => machine.JoinEntities)
+                                .Include(engineer => engineer.JoinEntities)
                                 .ThenInclude(join => join.Machine)
                                 .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
