@@ -25,7 +25,6 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View();
     }
 
@@ -34,7 +33,6 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
-          ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
           return View(machine);
       }
       else
@@ -57,20 +55,28 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(thisMachine);
     }
 
     [HttpPost]
     public ActionResult Edit(Machine machine)
     {
+      if (!ModelState.IsValid)
+      {
+          return View(machine);
+      }
+      
       _db.Machines.Update(machine);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    
     public ActionResult AddEngineer(int id)
     {
-      Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
+      Machine thisMachine = _db.Machines
+                            .Include(machine => machine.JoinEntities)
+                            .ThenInclude(join => join.Engineer)
+                            .FirstOrDefault(machines => machines.MachineId == id);
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(thisMachine);
     }
@@ -79,7 +85,8 @@ namespace Factory.Controllers
     public ActionResult AddEngineer(Machine machine, int engineerId)
     {
       #nullable enable
-      EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.EngineerId == engineerId && join.MachineId == machine.MachineId));
+      EngineerMachine? joinEntity = _db.EngineerMachines
+                                    .FirstOrDefault(join => (join.EngineerId == engineerId && join.MachineId == machine.MachineId));
       #nullable disable
       if (joinEntity == null && engineerId != 0)
       {
