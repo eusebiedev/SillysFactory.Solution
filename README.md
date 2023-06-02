@@ -43,15 +43,15 @@ appsettings.json
 }
 ```
 7. Withing the production directory `Factory`, run `dotnet ef database update` to instantiate the database.
-8. Within the production directory, run `dotnet watch run` in the command line to launch the application in development mode in a browswer, and interact with the application.
+8. Within the production directory, run `dotnet watch run` in the command line to launch the application in development mode in a browser, and interact with the application.
 
 ## Known Bugs 
 
-* _No known bugs as of 05/26/2023_
+* _No known bugs as of 06/02/2023_
 
 ## [MIT](https://opensource.org/license/mit/) License
 
-Copyright (c) 5/26/2023, Eusebie Siebenberg
+Copyright (c) 06/02/2023, Eusebie Siebenberg
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
