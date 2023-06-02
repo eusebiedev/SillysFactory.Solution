@@ -31,19 +31,19 @@ bin
 appsettings.json
 ```
 4. Navigate to this project's production directory called "Factory" with $ `cd Factory`.
-5. Within the production directory create a new file called `appsettings.json`  with $ `touch appsettings.json`.
-6. Within `appsettings.json`, paste in the following code, replacing `your_database`, `user-id`, and `password` values with your newly created database name, own username and password for MySQL 
+5. Within the production directory create a new file called `appsettings.json` with $ `touch appsettings.json`.
+6. Within `appsettings.json`, paste in the following code, replacing `user-id`, and `password` with your own username and password.
 (remove square brackets when inputting your details):
 
 ```json
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=[your_database];uid=[user-id];pwd=[password];"
+      "DefaultConnection": "Server=localhost;Port=3306;database=sillys_factory;uid=[user-id];pwd=[password];"
   }
 }
 ```
-7. Withing the production directory `Factory`, run `dotnet ef database update`.
-8. Within the production directory, run `dotnet watch run` in the command line to start the application in development mode with a watcher an interact with the database.
+7. Withing the production directory `Factory`, run `dotnet ef database update` to instantiate the database.
+8. Within the production directory, run `dotnet watch run` in the command line to launch the application in development mode in a browswer, and interact with the application.
 
 ## Known Bugs 
 
