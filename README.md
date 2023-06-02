@@ -30,16 +30,6 @@ obj
 bin
 appsettings.json
 ```
-#### Importing the MySQL Database: 
-* Open MySQL Workbench, in the Navigator > Administration window, select Data Import/Restore.
-* In Import Options select Import from Self-Contained File.
-* Navigate to the sql file located in the root directory of this project called `sillys_factory.sql`
-* Under Default Schema to be Imported To, select the New button.
-* Choose a name for your database, or simply use `sillys_factory.sql`, and Click OK
-* Navigate to the tab called Import Progress and click Start Import at the bottom right corner of the window.
-* After you are finished with the above steps, reopen the Navigator > Schemas tab. Right click and select Refresh All. 
-* Your new database will appear!
-
 4. Navigate to this project's production directory called "Factory" with $ `cd Factory`.
 5. Within the production directory create a new file called `appsettings.json`  with $ `touch appsettings.json`.
 6. Within `appsettings.json`, paste in the following code, replacing `your_database`, `user-id`, and `password` values with your newly created database name, own username and password for MySQL 
