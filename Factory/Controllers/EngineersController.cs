@@ -25,7 +25,6 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
 
@@ -34,7 +33,6 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
         return View(engineer);
       }
       else
@@ -63,6 +61,11 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Edit(Engineer engineer)
     {
+      if (!ModelState.IsValid)
+      {
+        return View(engineer);
+      }
+      else
       _db.Engineers.Update(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -70,7 +73,10 @@ namespace Factory.Controllers
 
     public ActionResult AddMachine(int id)
     {
-      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      Engineer thisEngineer = _db.Engineers
+                              .Include(engineer => engineer.JoinEntities)
+                              .ThenInclude(join => join.Machine)
+                              .FirstOrDefault(engineer => engineer.EngineerId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View(thisEngineer);
     }
@@ -79,7 +85,8 @@ namespace Factory.Controllers
     public ActionResult AddMachine(Engineer engineer, int machineId)
     {
       #nullable enable
-      EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.MachineId == machineId && join.EngineerId == engineer.EngineerId));
+      EngineerMachine? joinEntity = _db.EngineerMachines
+                                    .FirstOrDefault(join => (join.MachineId == machineId && join.EngineerId == engineer.EngineerId));
       #nullable disable
       if (joinEntity == null && machineId != 0)
       {
